@@ -13,6 +13,8 @@ class Settings(BaseSettings):
     MINIO_ACCESS_KEY: str
     MINIO_SECRET_KEY: str
     MINIO_BUCKET: str
+    minio_public_url: str  
+
 
     # Redis Configuration
     REDIS_HOST: str
@@ -20,6 +22,12 @@ class Settings(BaseSettings):
 
     # Environment
     ENV: str = "development"
+
+    @property
+    def SQLALCHEMY_DATABASE_URI(self):
+        return (    
+            f"postgresql+psycopg2://{self.DB_USER}:{self.DB_PASS}@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}"
+        )
 
     class Config:
         env_file = ".env"

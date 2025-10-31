@@ -9,3 +9,6 @@ scikit-image==0.21.0
 numpy==1.26.0
 requests==2.31.0
 minio==7.2.7
+boto3
+torch
+transformers

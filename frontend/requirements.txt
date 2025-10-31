@@ -1,0 +1,6 @@
+streamlit
+requests
+pandas
+Pillow
+boto3
+python-dotenv

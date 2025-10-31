@@ -1,0 +1,15 @@
+Metadata-Version: 2.4
+Name: docintel
+Version: 0.1
+Requires-Dist: fastapi
+Requires-Dist: sqlalchemy
+Requires-Dist: psycopg2-binary
+Requires-Dist: alembic
+Requires-Dist: uvicorn
+Requires-Dist: minio
+Requires-Dist: requests
+Requires-Dist: pydantic
+Requires-Dist: pandas
+Requires-Dist: streamlit
+Requires-Dist: Pillow
+Dynamic: requires-dist
