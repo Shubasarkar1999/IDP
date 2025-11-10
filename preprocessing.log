@@ -1,0 +1,19 @@
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.52, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+INFO:     Started server process [16064]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+ERROR:    [Errno 10048] error while attempting to bind on address ('0.0.02025-11-07 11:51:44,954 [INFO] - Processing file: documents/44cf34a0-e7e2-495b-b7ff-7cfc62ea7a04/a4a6fbc0d9084e1cbc8e43f60523c141_aadhar_back.jpg
+2025-11-07 11:51:45,331 [INFO] - \u2705 Uploaded enhanced image to: documents/enhanced/44cf34a0-e7e2-495b-b7ff-7cfc62ea7a04/a4a6fbc0d9084e1cbc8e43f60523c141_aadhar_back_enhanced.jpg
+2025-11-07 11:51:48,569 [INFO] - Callback response from ingestion: 200
+[INFO] Classified as voter_id (0.50)
+INFO:     10.11.225.245:58004 - "POST /process_batch HTTP/1.1" 200 OK
+2025-11-07 11:54:02,662 [INFO] - Processing file: documents/eafbd774-3640-44ae-ab5c-a4bb2f70396e/b91f918c7fe1467385a8e91149262b1d_3158451 IOA GEN Whitepaper Gen AI for Claims Adjudication_3 (1).pdf
+2025-11-07 11:54:08,291 [ERROR] - Failed processing documents/eafbd774-3640-44ae-ab5c-a4bb2f70396e/b91f918c7fe1467385a8e91149262b1d_3158451 IOA GEN Whitepaper Gen AI for Claims Adjudication_3 (1).pdf: local variable 'processed_files' referenced before assignment
+Traceback (most recent call last):
+  File "D:\doc-intel-system\services\preprocessing_service\main.py", line 96, in process_batch
+    results.extend(processed_files)
+UnboundLocalError: local variable 'processed_files' referenced before assignment
+2025-11-07 11:54:08,745 [INFO] - Callback response from ingestion: 200
+[INFO] Converting PDF to images: D:\Temp\tmpg6h0d32r.pdf
+[INFO] Extracted 20 image(s) from D:\Temp\tmpg6h0d32r.pdf
+INFO:     10.11.225.245:16250 - "POST /process_batch HTTP/1.1" 200 OK

@@ -1,0 +1,47 @@
+ 
+ -------------- celery@BBL-L272752 v5.3.6 (emerald-rush)
+--- ***** ----- 
+-- ******* ---- Windows-10-10.0.26100-SP0 2025-11-07 11:17:22
+- *** --- * --- 
+- ** ---------- [config]
+- ** ---------- .> app:         ingestion_tasks:0x1f5ce15bfa0
+- ** ---------- .> transport:   redis://localhost:6379/0
+- ** ---------- .> results:     redis://localhost:6379/1
+- *** --- * --- .> concurrency: 12 (solo)
+-- ******* ---- .> task events: OFF (enable -E to monitor tasks in this worker)
+--- ***** ----- 
+ -------------- [queues]
+                .> celery           exchange=celery(direct) key=celery
+                
+
+[tasks]
+  . services.ingestion_service.tasks.preprocess_job
+
+[2025-11-07 11:17:23,229: WARNING/MainProcess] C:\Users\272752\AppData\Local\Programs\Python\Python39\lib\site-packages\celery\worker\consumer\consumer.py:507: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+whether broker connection retries are made during startup in Celery 6.0 and above.
+If you wish to retain the existing behavior for retrying connections on startup,
+you should set broker_connection_retry_on_startup to True.
+  warnings.warn(
+
+[2025-11-07 11:17:23,297: INFO/MainProcess] Connected to redis://localhost:6379/0
+[2025-11-07 11:17:23,298: WARNING/MainProcess] C:\Users\272752\AppData\Local\Programs\Python\Python39\lib\site-packages\celery\worker\consumer\consumer.py:507: CPendingDeprecationWarning: The broker_connection_retry configuration setting will no longer determine
+whether broker connection retries are made during startup in Celery 6.0 and above.
+If you wish to retain the existing behavior for retrying connections on startup,
+you should set broker_connection_retry_on_startup to True.
+  warnings.warn(
+
+[2025-11-07 11:17:23,330: INFO/MainProcess] mingle: searching for neighbors
+[2025-11-07 11:17:24,513: INFO/MainProcess] mingle: all alone
+[2025-11-07 11:17:24,621: INFO/MainProcess] celery@BBL-L272752 ready.
+[2025-11-07 11:51:44,097: INFO/MainProcess] Task services.ingestion_service.tasks.preprocess_job[1a29a92e-5c0d-4300-b6a1-1375630d249d] received
+2025-11-07 11:51:44,128 [INFO] - preprocess_job: calling preprocessing_service for batch 44cf34a0-e7e2-495b-b7ff-7cfc62ea7a04
+[2025-11-07 11:51:44,128: INFO/MainProcess] preprocess_job: calling preprocessing_service for batch 44cf34a0-e7e2-495b-b7ff-7cfc62ea7a04
+2025-11-07 11:51:48,963 [INFO] - preprocessing_service responded: 200
+[2025-11-07 11:51:48,963: INFO/MainProcess] preprocessing_service responded: 200
+[2025-11-07 11:51:48,969: INFO/MainProcess] Task services.ingestion_service.tasks.preprocess_job[1a29a92e-5c0d-4300-b6a1-1375630d249d] succeeded in 4.875s: {'status': 'submitted', 'response': {'batch_id': '44cf34a0-e7e2-495b-b7ff-7cfc62ea7a04', 'processed': 1, 'details': [{...}]}}
+[2025-11-07 11:54:02,548: INFO/MainProcess] Task services.ingestion_service.tasks.preprocess_job[1be0d56d-f6e0-4072-8981-94c9e026fc5c] received
+2025-11-07 11:54:02,551 [INFO] - preprocess_job: calling preprocessing_service for batch eafbd774-3640-44ae-ab5c-a4bb2f70396e
+[2025-11-07 11:54:02,551: INFO/MainProcess] preprocess_job: calling preprocessing_service for batch eafbd774-3640-44ae-ab5c-a4bb2f70396e
+2025-11-07 11:54:08,951 [INFO] - preprocessing_service responded: 200
+[2025-11-07 11:54:08,951: INFO/MainProcess] preprocessing_service responded: 200
+[2025-11-07 11:54:08,956: INFO/MainProcess] Task services.ingestion_service.tasks.preprocess_job[1be0d56d-f6e0-4072-8981-94c9e026fc5c] succeeded in 6.4060000000026776s: {'status': 'submitted', 'response': {'batch_id': 'eafbd774-3640-44ae-ab5c-a4bb2f70396e', 'processed': 1, 'details': [{...}]}}
