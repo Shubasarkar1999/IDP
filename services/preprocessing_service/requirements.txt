@@ -12,3 +12,4 @@ minio==7.2.7
 boto3
 torch
 transformers
+PyPDF2

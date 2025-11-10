@@ -57,41 +57,41 @@ def process_batch(req: ProcessBatchRequest):
                 image_paths = [tmp_input.name]
 
             # --- Step 3: Process each image ---
-            processed_files = []
-            for img_path in image_paths:
-                # 🧩 Extract original filename from the MinIO path, not temp file
-                original_file_name = os.path.basename(object_path)
-                base_name, original_ext = os.path.splitext(original_file_name)
+                processed_files = []
+                for img_path in image_paths:
+                    # 🧩 Extract original filename from the MinIO path, not temp file
+                    original_file_name = os.path.basename(object_path)
+                    base_name, original_ext = os.path.splitext(original_file_name)
 
-                # --- Enhance image ---
-                enhanced_bytes = enhance_image(img_path)
+                    # --- Enhance image ---
+                    enhanced_bytes = enhance_image(img_path)
 
-                # ✅ Use same base name for enhanced version (fix)
-                enhanced_name = f"{base_name}_enhanced{original_ext}"
+                    # ✅ Use same base name for enhanced version (fix)
+                    enhanced_name = f"{base_name}_enhanced{original_ext}"
 
-                # ✅ Store inside correct folder structure
-                bucket = "documents"
-                enhanced_object_path = f"enhanced/{batch_id}/{enhanced_name}"
+                    # ✅ Store inside correct folder structure
+                    bucket = "documents"
+                    enhanced_object_path = f"enhanced/{batch_id}/{enhanced_name}"
 
-                # --- Upload enhanced image ---
-                uploaded_path = upload_bytes(
-                    bucket=bucket,
-                    object_name=enhanced_object_path,
-                    data_bytes=enhanced_bytes,
-                    content_type="image/jpeg" if original_ext.lower() in [".jpg", ".jpeg"] else "image/png"
-                )
+                    # --- Upload enhanced image ---
+                    uploaded_path = upload_bytes(
+                        bucket=bucket,
+                        object_name=enhanced_object_path,
+                        data_bytes=enhanced_bytes,
+                        content_type="image/jpeg" if original_ext.lower() in [".jpg", ".jpeg"] else "image/png"
+                    )
 
-                logger.info(f"✅ Uploaded enhanced image to: {uploaded_path}")
+                    logger.info(f"✅ Uploaded enhanced image to: {uploaded_path}")
 
-                # --- Step 4: Classify enhanced image ---
-                doc_type, confidence = classify_document(img_path)
+                    # --- Step 4: Classify enhanced image ---
+                    doc_type, confidence = classify_document(img_path)
 
-                processed_files.append({
-                    "input": object_path,
-                    "enhanced_path": f"{bucket}/{enhanced_object_path}",  # ✅ include full enhanced path
-                    "type": doc_type,
-                    "confidence": confidence
-                })
+                    processed_files.append({
+                        "input": object_path,
+                        "enhanced_path": f"{bucket}/{enhanced_object_path}",  # ✅ include full enhanced path
+                        "type": doc_type,
+                        "confidence": confidence
+                    })
 
             results.extend(processed_files)
 
@@ -104,7 +104,7 @@ def process_batch(req: ProcessBatchRequest):
         local_ip = socket.gethostbyname(socket.gethostname())
         callback_url = f"http://{local_ip}:8000/preprocess_callback"
         payload = {"batch_id": batch_id, "results": results}
-        r = requests.post(callback_url, json=payload, timeout=10)
+        r = requests.post(callback_url, json=payload, timeout=100)
         logger.info(f"Callback response from ingestion: {r.status_code}")
     except Exception as e:
         logger.warning(f"Callback failed: {e}")
